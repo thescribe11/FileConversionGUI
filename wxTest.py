@@ -1,6 +1,7 @@
 import wx
 import gui as wxFormBuilderTest
-import tkinter as tk
+
+import ImagesToPDF.ImagesToPDF as convert
 
 class TransformFrame(wxFormBuilderTest.MainFrame):
     def __init__(self, parent):
@@ -10,6 +11,7 @@ class TransformFrame(wxFormBuilderTest.MainFrame):
         print("It's alive!")
         location = self.DirPicker.GetPath()
         print(location)
+        convert.converter(location)
 
 if __name__ == "__main__":
     app = wx.App(False)
