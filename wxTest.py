@@ -1,17 +1,19 @@
 import wx
 import gui as wxFormBuilderTest
 
-import ImagesToPDF.ImagesToPDF as convert
+import ImagesToPDF as convert
 
 class TransformFrame(wxFormBuilderTest.MainFrame):
     def __init__(self, parent):
         wxFormBuilderTest.MainFrame.__init__(self, None)
     
     def TransformFile(self, event):
-        print("It's alive!")
         location = self.DirPicker.GetPath()
-        print(location)
-        convert.converter(location)
+        self.m_staticText3.SetLabel(u"Processing files...")
+        self.m_staticText3.Update()
+        self.Update()
+        convert.process(location)
+
 
 if __name__ == "__main__":
     app = wx.App(False)
