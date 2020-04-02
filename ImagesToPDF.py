@@ -1,9 +1,12 @@
 import os
 from os import listdir
 from os.path import isfile, join
+import sys
 
 def process(LOCATION):
     files = [f for f in listdir(LOCATION) if isfile(join(LOCATION, f))]
+    stdout = sys.stdout
+    sys.stdout = None
     print(files)
     PATH = LOCATION + '/output.tex'
     print(PATH)
@@ -21,12 +24,13 @@ def process(LOCATION):
     text += '\n\\end{document}'
     f.write(text)
     f.close()
-    os.system(f'pdflatex output.tex') # Make pdf
+    os.system(f'pdflatex output.tex /b') # Make pdf
 
     os.remove(LOCATION + '\\output.tex') # Remove unwanted files.
     os.remove(LOCATION + '\\output.aux')
     os.remove(LOCATION + '\\output.log')
     os.system('.\\output.pdf')
+    sys.stdout = stdout
     
     return None
 
